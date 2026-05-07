@@ -5,6 +5,7 @@ dotenv.config({ path: 'config.env' });
 const morgan = require('morgan');
 
 
+
 //database connection
 const database = require('./config/database');
 database();
