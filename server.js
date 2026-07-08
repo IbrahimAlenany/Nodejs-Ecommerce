@@ -5,6 +5,7 @@ dotenv.config({ path: 'config.env' });
 const morgan = require('morgan');
 const ApiError = require('./utils/ApiError');
 const categoryRoute = require('./routes/categoryRoute');
+const subcategoryRoute = require('./routes/subCategoryRoute');
 const ErrorMiddleware = require('./middlewares/errorMiddleware');
 //database connection
 const database = require('./config/database');
@@ -19,6 +20,7 @@ app.use(express.json());
 
 //routs
 app.use('/api/v1/categories', categoryRoute);
+app.use('/api/v1/subcategories', subcategoryRoute);
 
 app.all('*error', (req, res, next) => {
     next(new ApiError(`canot find this route: ${req.originalUrl}`, 400));
