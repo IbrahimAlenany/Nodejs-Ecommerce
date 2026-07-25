@@ -18,7 +18,10 @@
     "express-validator": "^6.14.0",
     "mongoose": "^6.0.13",
     "morgan": "^1.10.0",
-    "slugify": "^1.6.3"
+    "multer": "^2.2.0",
+    "sharp": "^0.35.3",
+    "slugify": "^1.6.3",
+    "uuid": "^14.0.1"
   },
   "devDependencies": {
     "eslint": "^8.5.0",
