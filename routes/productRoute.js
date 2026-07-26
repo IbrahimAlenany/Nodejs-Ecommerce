@@ -12,7 +12,7 @@ const {
   createProduct,
   updateProduct,
   deleteProduct,
-   uploadProductImages,
+  uploadProductImages,
   resizeProductImages,
 } = require('../services/productService');
 
