@@ -1,11 +1,11 @@
 const express = require('express');
 
-// const {
-//   getUserValidator,
-//   createUserValidator,
-//   updateUserValidator,
-//   deleteUserValidator,
-// } = require('../utils/validators/userValidator');
+const {
+  getUserValidator,
+  createUserValidator,
+  updateUserValidator,
+  deleteUserValidator,
+} = require('../utils/validators/uservalidator');
 
 const {
   getUsers,
@@ -23,13 +23,16 @@ router.route('/')
 .get(getUsers)
 .post(uploadUserImage,
   resizeImage,
+  createUserValidator,
   createUser);
 router
   .route('/:id')
-  .get(getUser)
+  .get(getUserValidator, getUser)
   .put(uploadUserImage,
     resizeImage,
+    updateUserValidator,
     updateUser)
-  .delete(deleteUser);
+  .delete(deleteUserValidator, deleteUser);
+
 
 module.exports = router;
