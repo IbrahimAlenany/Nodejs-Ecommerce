@@ -15,9 +15,12 @@ const {
   deleteUser,
   uploadUserImage,
   resizeImage,
+  changeUserPassword,
 } = require('../services/userServices');
 
 const router = express.Router();
+
+router.put('/changePassword/:id', changeUserPassword)
 
 router.route('/')
 .get(getUsers)
