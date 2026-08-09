@@ -104,7 +104,13 @@ exports.changeUserPasswordValidator = [
     .notEmpty()
     .withMessage('password Required')
     .isLength( { min : 6 } )
-    .withMessage('password must be at least 6 characters'),
+    .withMessage('password must be at least 6 characters')
+    .custom((password, { req }) => {
+      if(password !== req.body.passwordConfirm) {
+        throw new Error('password Confirmation in correct')
+      }
+      return true;
+    }),
 
   check('passwordConfirm')
   .notEmpty()
