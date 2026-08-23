@@ -153,7 +153,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
     res
     .status(200)
     .json({ status: 'Success', message: 'Reset code sent to email'})
-})
+});
 
 exports.verifyPassResetCode = asyncHandler(async (req, res, next) => {
     //1- Get user based on reset code
@@ -205,4 +205,4 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
     // 3- if everything is ok, generate token
     const token = createToken(user._id);
     res.status(200).json({ token });
-})
+});
