@@ -1,40 +1,47 @@
 const express = require('express');
-//const {
-//   getBrandValidator,
-//   createBrandValidator,
-//   updateBrandValidator,
-//   deleteBrandValidator,
-//} = require('../utils/validators/brandValidator');
-
-const authServices = require('../services/authService');
 
 const {
-  getReviews,
+  createReviewValidator,
+  updateReviewValidator,
+  getReviewValidator,
+  deleteReviewValidator,
+} = require('../utils/validators/reviewValidator');
+
+const {
   getReview,
+  getReviews,
   createReview,
   updateReview,
   deleteReview,
 } = require('../services/reviewService');
 
-const router = express.Router();
+const authService = require('../services/authService');
 
+const router = express.Router({ mergeParams: true });
 
-router.route('/')
-.get(getReviews)
-.post(
-  authServices.protect,
-  authServices.allowedTo('user'),
-createReview,);
+router
+  .route('/')
+  .get(getReviews)
+  .post(
+    authService.protect,
+    authService.allowedTo('user'),
+    createReviewValidator,
+    createReview
+  );
 router
   .route('/:id')
-  .get(getReview)
+  .get(getReviewValidator, getReview)
   .put(
-    authServices.protect,
-    authServices.allowedTo('user'),
-    updateReview)
+    authService.protect,
+    authService.allowedTo('user'),
+    updateReviewValidator,
+    updateReview
+  )
   .delete(
-  authServices.protect,
-  authServices.allowedTo('user'),
-  deleteReview);
+    authService.protect,
+    authService.allowedTo('user', 'manager', 'admin'),
+    deleteReviewValidator,
+    deleteReview
+  );
 
 module.exports = router;
