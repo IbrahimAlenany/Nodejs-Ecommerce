@@ -68,8 +68,17 @@ const productSchema = new mongoose.Schema(
       default: 0,
     },
   },
-  { timestamps: true }
+  { timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
+
+productSchema.virtual('reviews', {
+  ref: 'Review',
+  foreignField:'product',
+  localField:'_id',
+});
 
 // Mongoose query middleware
 productSchema.pre(/^find/, function (next) {
@@ -94,6 +103,7 @@ const setImageURL = (doc) => {
     doc.images = imagesList;
   }
 };
+
 // findOne, findAll and update
 productSchema.post('init', (doc) => {
   setImageURL(doc);
