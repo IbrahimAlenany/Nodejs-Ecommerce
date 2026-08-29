@@ -7,6 +7,7 @@ const {
 } = require('../utils/validators/productValidator');
 
 const authServices = require('../services/authService');
+const reviewsRoute = require('./reviewRoute');
 
 const {
   getProducts,
@@ -19,6 +20,8 @@ const {
 } = require('../services/productService');
 
 const router = express.Router();
+
+router.use('/:productId/reviews', reviewsRoute);
 
 router.route('/')
 .get(getProducts)

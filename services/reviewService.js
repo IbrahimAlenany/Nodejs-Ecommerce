@@ -4,6 +4,15 @@ const factory = require('./handlersFactory');
 const { uploadSingleImage } = require('../middlewares/uploadImageMiddleware');
 const Review = require('../models/reviewModel');
 
+//Nested route
+// Get /api/categories/:categoryId/subcategories
+exports.createFilterObj = (req, res, next) => {
+    let filterObject = {};
+    if(req.params.productId) filterObject = { product: req.params.productId };
+    req.filterObject = filterObject;
+    next();
+};
+
 // @desc    Get list of reviews
 // @route   GET /api/v1/reviews
 // @access  Public
