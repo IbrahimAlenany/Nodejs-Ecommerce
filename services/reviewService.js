@@ -23,6 +23,13 @@ exports.getReviews = factory.getAll(Review);
 // @access  Public
 exports.getReview = factory.getOne(Review);
 
+// Nested route (Create)
+exports.setProductIdAndUserIdToBody = (req, res, next) => {
+  if (!req.body.product) req.body.product = req.params.productId;
+  if (!req.body.user) req.body.user = req.user._id;
+  next();
+};
+
 // @desc    Create review
 // @route   POST  /api/v1/reviews
 // @access  Private/protected/User
