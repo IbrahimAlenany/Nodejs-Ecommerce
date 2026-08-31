@@ -6,7 +6,7 @@ const {
   deleteProductValidator,
 } = require('../utils/validators/productValidator');
 
-const authServices = require('../services/authService');
+const authService = require('../services/authService');
 const reviewsRoute = require('./reviewRoute');
 
 const {
@@ -21,31 +21,38 @@ const {
 
 const router = express.Router();
 
+// POST   /products/jkshjhsdjh2332n/reviews
+// GET    /products/jkshjhsdjh2332n/reviews
+// GET    /products/jkshjhsdjh2332n/reviews/87487sfww3
 router.use('/:productId/reviews', reviewsRoute);
 
-router.route('/')
-.get(getProducts)
-.post(
-  authServices.protect,
-  authServices.allowedTo('admin','manager'),
-  uploadProductImages,
-  resizeProductImages,
-  createProductValidator,
-  createProduct);
+router
+  .route('/')
+  .get(getProducts)
+  .post(
+    authService.protect,
+    authService.allowedTo('admin', 'manager'),
+    uploadProductImages,
+    resizeProductImages,
+    createProductValidator,
+    createProduct
+  );
 router
   .route('/:id')
   .get(getProductValidator, getProduct)
   .put(
-  authServices.protect,
-  authServices.allowedTo('admin','manager'),
-  uploadProductImages,
-  resizeProductImages,
-  updateProductValidator,
-  updateProduct)
+    authService.protect,
+    authService.allowedTo('admin', 'manager'),
+    uploadProductImages,
+    resizeProductImages,
+    updateProductValidator,
+    updateProduct
+  )
   .delete(
-    authServices.protect,
-    authServices.allowedTo('admin'),
+    authService.protect,
+    authService.allowedTo('admin'),
     deleteProductValidator,
-    deleteProduct);
+    deleteProduct
+  );
 
 module.exports = router;
