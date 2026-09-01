@@ -44,10 +44,21 @@ const userSchema = new mongoose.Schema(
                 type: mongoose.Schema.ObjectId,
                 ref: 'Product',
             }
-        ]
-    },
-    { timestamps: true }
-)
+        ],
+
+         addresses: [
+      {
+        id: { type: mongoose.Schema.Types.ObjectId },
+        alias: String,
+        details: String,
+        phone: String,
+        city: String,
+        postalCode: String,
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 userSchema.pre('save', async function (next) {
     if(!this.isModified('password')) return next();
