@@ -3,6 +3,7 @@ const factory = require('./handlersFactory');
 const ApiError = require('../utils/apiError');
 
 const Cart = require('../models/cartModel');
+const product = require('../models/productModel')
 const Order = require('../models/orderModel');
 
 // @desc    Create Cash order
