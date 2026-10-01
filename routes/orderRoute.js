@@ -7,7 +7,7 @@ const {
   updateOrderToPaid,
   updateOrderToDelivered,
   checkoutSession,
-} = require('../services/orderServices');
+} = require('../services/orderService');
 
 const authService = require('../services/authService');
 
