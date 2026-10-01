@@ -21,7 +21,8 @@ router.get(
   checkoutSession
 );
 
-router.route('/:cartId').post(authService.allowedTo('user'), createCashOrder);
+router.route('/:cartId')
+.post(authService.allowedTo('user'), createCashOrder);
 router.get(
   '/',
   authService.allowedTo('user', 'admin', 'manager'),
